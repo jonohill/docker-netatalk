@@ -11,11 +11,11 @@ RUN apt-get update \
         $DEPS \
         tracker \
         avahi-daemon \
-        curl wget \
-        &&  wget      "http://ufpr.dl.sourceforge.net/project/netatalk/netatalk/3.1.8/netatalk-3.1.8.tar.gz" \
-        &&  curl -SL  "http://ufpr.dl.sourceforge.net/project/netatalk/netatalk/3.1.8/netatalk-3.1.8.tar.gz" | tar xvz
+        curl
 
-WORKDIR netatalk-3.1.8
+RUN curl -SL "http://ufpr.dl.sourceforge.net/project/netatalk/netatalk/${NETATALK_VERSION}/netatalk-${NETATALK_VERSION}.tar.gz" | tar xvz
+
+WORKDIR netatalk-${NETATALK_VERSION}
 
 RUN ./configure \
         --prefix=/usr \
